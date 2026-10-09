@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Կատու - Ապրանքներ</title>
+    <meta name="description" content="Josera կատուների կերերի տեսականի՝ ձագուկների, հասուն և ստերջացված կատուների համար։">
+    <meta name="theme-color" content="#FFD700">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Josera">
+    <meta property="og:locale" content="hy_AM">
+    <meta property="og:title" content="Կատու - Ապրանքներ">
+    <meta property="og:description" content="Josera կատուների կերերի տեսականի՝ ձագուկների, հասուն և ստերջացված կատուների համար։">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <div class="header-top">
-            <a href="index.html" class="logo">José<span>ra</span></a>
+            <a href="index.html" class="logo" aria-label="Josera — գլխավոր էջ">José<span>ra</span></a>
             <div class="mini-desc">Կատուների համար Josera ապրանքների ցանկ</div>
             <div class="header-actions">
-                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
-                <nav class="header-nav" aria-label="Header navigation">
-                    <ul class="header-buttons">
+                <button class="menu-toggle" type="button" onclick="toggleMenu()" aria-label="Մենյու" aria-expanded="false" aria-controls="headerMenu">☰</button>
+                <nav class="header-nav" aria-label="Գլխավոր նավարկություն">
+                    <ul class="header-buttons" id="headerMenu">
                         <li><a href="shun.html">Շուն</a></li>
                         <li><a href="katu.html">Կատու</a></li>
                         <li><a href="josi.html">Ջոսի</a></li>
-                        <li><a href="bjshkakan.html">Օգնություն</a></li>
+                        <li><a href="bjshkakan.html">Բժշկական</a></li>
                     </ul>
                 </nav>
             </div>
@@ -26,73 +34,32 @@
     </header>
     <main>
         <section class="product-cards-section">
-            <div class="product-cards-grid">
-                <a class="product-card" href="product-detail.html?id=josera_kitten_grainfree">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Kitten Grainfree</h2>
-                            <div class="mini-desc">Նախատեսված է մինչև 1 տարեկան ձագուկների, ինչպես նաև հղի և կերակրող մայր կատուների համար</div>
-                        </div>
-                        <img src="pictures/cat/cat-josera_kitten_grainfree.webp" alt="Josera Kitten Grainfree">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_naturecat">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera NatureCat</h2>
-                            <div class="mini-desc">Նախատեսված է 1 տարեկանից բարձր կատուների համար</div>
-                        </div>
-                        <img src="pictures/cat/cat-josera_naturecat.webp" alt="Josera NatureCat">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_catelux">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Catelux</h2>
-                            <div class="mini-desc">Նախատեսված է 1 տարեկանից բարձր կատուների համար</div>
-                        </div>
-                        <img src="pictures/cat/cat-josera_catelux.webp" alt="Josera Catelux">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_dailycat">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera DailyCat</h2>
-                            <div class="mini-desc">Նախատեսված է 1 տարեկանից բարձր կատուների համար</div>
-                        </div>
-                        <img src="pictures/cat/cat-josera_dailycat.webp" alt="Josera DailyCat">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_leger">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Léger</h2>
-                            <div class="mini-desc">Նախատեսված է 1 տարեկանից բարձր ստերջացված կատուների համար</div>
-                        </div>
-                        <img src="pictures/cat/cat-josera_leger.webp" alt="Josera Léger">
-                    </div>
-                </a>
-            </div>
+            <h1 class="visually-hidden">Կատուների կեր</h1>
+            <!-- Cards are generated by js/catalog.js from js/data.js (category: 'cat') -->
+            <div class="product-cards-grid" data-category="cat"></div>
+            <noscript><p class="noscript-msg">Ապրանքները տեսնելու համար միացրեք JavaScript-ը։</p></noscript>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-logo">José<span>ra</span></div>
-            <nav class="footer-nav">
+            <nav class="footer-nav" aria-label="Ստորին նավարկություն">
                 <ul id="navMenu">
                     <li><a href="shun.html">Շուն</a></li>
                     <li><a href="katu.html">Կատու</a></li>
                     <li><a href="josi.html">Ջոսի</a></li>
-                    <li><a href="bjshkakan.html">Օգնություն</a></li>
+                    <li><a href="bjshkakan.html">Բժշկական</a></li>
                 </ul>
             </nav>
             <div class="footer-contact">
-                <p>&copy; 2026 Josera - բոլոր իրավունքները պաշտպանված են:</p>
-                <p>Կապ մեզ հետ: <a href="mailto:info@Josera.am" class="footer-email">info@Josera.am</a></p>
+                <p>&copy; 2026 Josera կերերի խանութ։ Բոլոր իրավունքները պաշտպանված են։</p>
+                <p>Կապ մեզ հետ՝ <a href="mailto:info@Josera.am" class="footer-email">info@Josera.am</a></p>
             </div>
         </div>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/catalog.js"></script>
 </body>
 </html>

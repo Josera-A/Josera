@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ջոսի - Ապրանքներ</title>
+    <meta name="description" content="Ջոսի (JosiCat և JosiDog) կերերի տեսականի կատուների և շների համար։">
+    <meta name="theme-color" content="#FFD700">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Josera">
+    <meta property="og:locale" content="hy_AM">
+    <meta property="og:title" content="Ջոսի - Ապրանքներ">
+    <meta property="og:description" content="Ջոսի (JosiCat և JosiDog) կերերի տեսականի կատուների և շների համար։">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <div class="header-top">
-            <a href="index.html" class="logo">José<span>ra</span></a>
+            <a href="index.html" class="logo" aria-label="Josera — գլխավոր էջ">José<span>ra</span></a>
             <div class="mini-desc">Ջոսի ապրանքների ցանկ</div>
             <div class="header-actions">
-                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
-                <nav class="header-nav" aria-label="Header navigation">
-                    <ul class="header-buttons">
+                <button class="menu-toggle" type="button" onclick="toggleMenu()" aria-label="Մենյու" aria-expanded="false" aria-controls="headerMenu">☰</button>
+                <nav class="header-nav" aria-label="Գլխավոր նավարկություն">
+                    <ul class="header-buttons" id="headerMenu">
                         <li><a href="shun.html">Շուն</a></li>
                         <li><a href="katu.html">Կատու</a></li>
                         <li><a href="josi.html">Ջոսի</a></li>
-                        <li><a href="bjshkakan.html">Օգնություն</a></li>
+                        <li><a href="bjshkakan.html">Բժշկական</a></li>
                     </ul>
                 </nav>
             </div>
@@ -26,109 +34,32 @@
     </header>
     <main>
         <section class="product-cards-section">
-            <div class="product-cards-grid">
-                <a class="product-card" href="product-detail.html?id=josi_cat_kitten">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>JosiCat Kitten</h2>
-                            <div class="mini-desc">Նախատեսված է մինչև 1 տարեկան ձագուկների, ինչպես նաև հղի և կերակրող մայր կատուների համար</div>
-                        </div>
-                        <img src="pictures/josi/josi&cat_kitten.webp" alt="JosiCat Kitten">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josi_cat_sterilised_classic">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>JosiCat Sterilised Classic</h2>
-                            <div class="mini-desc">Նախատեսված է ստերիլիզացված կատուների համար</div>
-                        </div>
-                        <img src="pictures/josi/josi&cat_sterilised_classic.webp" alt="JosiCat Sterilised Classic">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josi_cat_crispy_duck">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>JosiCat Crispy Duck</h2>
-                            <div class="mini-desc">Նախատեսված է հասուն կատուների համար</div>
-                        </div>
-                        <img src="pictures/josi/josi&cat_crispy_duck.webp" alt="JosiCat Crispy Duck">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josi_cat_tasty_beef">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>JosiCat Tasty Beef</h2>
-                            <div class="mini-desc">Նախատեսված է հասուն կատուների համար</div>
-                        </div>
-                        <img src="pictures/josi/josi&cat_tasty_beef.webp" alt="JosiCat Tasty Beef">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josi_dog_family">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>JosiDog Family</h2>
-                            <div class="mini-desc">Նախատեսված է բոլոր ցեղատեսակի ձագերի (1–2 ամսական) և կերակրող մայր շների համար</div>
-                        </div>
-                        <img src="pictures/josi/josi&dog_family.webp" alt="JosiDog Family">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josi_dog_junior">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>JosiDog Junior</h2>
-                            <div class="mini-desc">Նախատեսված է միջին և մեծ չափի ձագուկների համար (1–15 ամսական)</div>
-                        </div>
-                        <img src="pictures/josi/josi&dog_junior.webp" alt="JosiDog Junior">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josi_dog_mini">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>JosiDog Mini</h2>
-                            <div class="mini-desc">Նախատեսված է փոքր ցեղատեսակի հասուն շների համար</div>
-                        </div>
-                        <img src="pictures/josi/josi&dog_mini.webp" alt="JosiDog Mini">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josi_dog_active">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>JosiDog Active</h2>
-                            <div class="mini-desc">Նախատեսված է միջին և մեծ ցեղատեսակի հասուն և ակտիվ շների համար</div>
-                        </div>
-                        <img src="pictures/josi/josi&dog_active.webp" alt="JosiDog Active">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josi_dog_regular">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>JosiDog Regular</h2>
-                            <div class="mini-desc">Նախատեսված է միջին և մեծ ցեղատեսակի հասուն շների համար</div>
-                        </div>
-                        <img src="pictures/josi/josi&dog_regular.webp" alt="JosiDog Regular">
-                    </div>
-                </a>
-            </div>
+            <h1 class="visually-hidden">Ջոսի (JosiCat և JosiDog) կեր</h1>
+            <!-- Cards are generated by js/catalog.js from js/data.js (category: 'josi') -->
+            <div class="product-cards-grid" data-category="josi"></div>
+            <noscript><p class="noscript-msg">Ապրանքները տեսնելու համար միացրեք JavaScript-ը։</p></noscript>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-logo">José<span>ra</span></div>
-            <nav class="footer-nav">
+            <nav class="footer-nav" aria-label="Ստորին նավարկություն">
                 <ul id="navMenu">
                     <li><a href="shun.html">Շուն</a></li>
                     <li><a href="katu.html">Կատու</a></li>
                     <li><a href="josi.html">Ջոսի</a></li>
-                    <li><a href="bjshkakan.html">Օգնություն</a></li>
+                    <li><a href="bjshkakan.html">Բժշկական</a></li>
                 </ul>
             </nav>
             <div class="footer-contact">
-                <p>&copy; 2026 Josera - բոլոր իրավունքները պաշտպանված են:</p>
-                <p>Կապ մեզ հետ: <a href="mailto:info@Josera.am" class="footer-email">info@Josera.am</a></p>
+                <p>&copy; 2026 Josera կերերի խանութ։ Բոլոր իրավունքները պաշտպանված են։</p>
+                <p>Կապ մեզ հետ՝ <a href="mailto:info@Josera.am" class="footer-email">info@Josera.am</a></p>
             </div>
         </div>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/catalog.js"></script>
 </body>
 </html>

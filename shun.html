@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Շուն - Ապրանքներ</title>
+    <meta name="description" content="Josera շների կերերի տեսականի՝ ձագերի, հասուն, փոքր և մեծ ցեղատեսակի շների համար։">
+    <meta name="theme-color" content="#FFD700">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Josera">
+    <meta property="og:locale" content="hy_AM">
+    <meta property="og:title" content="Շուն - Ապրանքներ">
+    <meta property="og:description" content="Josera շների կերերի տեսականի՝ ձագերի, հասուն, փոքր և մեծ ցեղատեսակի շների համար։">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <div class="header-top">
-            <a href="index.html" class="logo">José<span>ra</span></a>
+            <a href="index.html" class="logo" aria-label="Josera — գլխավոր էջ">José<span>ra</span></a>
             <div class="mini-desc">Շների համար Josera ապրանքների ցանկ</div>
             <div class="header-actions">
-                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
-                <nav class="header-nav" aria-label="Header navigation">
-                    <ul class="header-buttons">
+                <button class="menu-toggle" type="button" onclick="toggleMenu()" aria-label="Մենյու" aria-expanded="false" aria-controls="headerMenu">☰</button>
+                <nav class="header-nav" aria-label="Գլխավոր նավարկություն">
+                    <ul class="header-buttons" id="headerMenu">
                         <li><a href="shun.html">Շուն</a></li>
                         <li><a href="katu.html">Կատու</a></li>
                         <li><a href="josi.html">Ջոսի</a></li>
-                        <li><a href="bjshkakan.html">Օգնություն</a></li>
+                        <li><a href="bjshkakan.html">Բժշկական</a></li>
                     </ul>
                 </nav>
             </div>
@@ -26,163 +34,32 @@
     </header>
     <main>
         <section class="product-cards-section">
-            <div class="product-cards-grid">
-                <a class="product-card" href="product-detail.html?id=josera_family_plus_mother_puppy">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Family Plus Mother & Puppy with Salmon & Rice</h2>
-                            <div class="mini-desc">Նախատեսված է նորածին ձագերի (1–2 ամսական) համար</div>
-                        </div>
-                        <img src="pictures/dog/dog-josera_family_plus_mother_puppy_salmon_rice.webp" alt="Family Plus Mother & Puppy">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_surf_turf_junior">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Surf & Turf Junior</h2>
-                            <div class="mini-desc">Նախատեսված է միջին և մեծ չափի ձագուկների համար (2–15 ամսական)</div>
-                        </div>
-                        <img src="pictures/dog/dog-josera_surf_turf_junior.webp" alt="Josera Surf & Turf Junior">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_kids">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Kids</h2>
-                            <div class="mini-desc">Նախատեսված է միջին և մեծ չափի ձագուկների համար (2–15 ամսական)</div>
-                        </div>
-                        <img src="pictures/dog/dog-josera_kids.webp" alt="Josera Kids">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_sensi_junior">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Sensi Junior</h2>
-                            <div class="mini-desc">Նախատեսված է միջին և մեծ չափի ձագուկների համար (2–15 ամսական)</div>
-                        </div>
-                        <img src="pictures/dog/dog-josera_sensi_junior.webp" alt="Josera Sensi Junior">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_mini_junior">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Mini Junior</h2>
-                            <div class="mini-desc">Նախատեսված է փոքր չափի ձագուկների համար (2–10 ամսական)</div>
-                        </div>
-                        <img src="pictures/dog/dog-josera_mini_junior.webp" alt="Josera Mini Junior">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_lamb_sweet_potato">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Lamb & Sweet Potato</h2>
-                            <div class="mini-desc">Նախատեսված է միջին և մեծ չափի հասուն շների համար</div>
-                        </div>
-                        <img src="pictures/dog/dog-josera_lamb_sweet_potato.webp" alt="Josera Lamb & Sweet Potato">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_duck_sweet_potato">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Duck & Sweet Potato</h2>
-                            <div class="mini-desc">Նախատեսված է միջին և մեծ չափի հասուն շների համար</div>
-                        </div>
-                        <img src="pictures/dog/dog-josera_duck_sweet_potato.webp" alt="Josera Duck & Sweet Potato">
-                    </div>
-                </a>
-                    <a class="product-card" href="product-detail.html?id=josera_poultry_trout">
-                        <div class="product-card-content">
-                            <div class="text">
-                                <h2>Josera Poultry & Trout</h2>
-                                <div class="mini-desc">Նախատեսված է միջին և մեծ ցեղատեսակի հասուն շների համար</div>
-                            </div>
-                            <img src="pictures/dog/dog-josera_poultry_trout.webp" alt="Josera Poultry & Trout">
-                        </div>
-                    </a>
-                    <a class="product-card" href="product-detail.html?id=josera_sensi_adult">
-                        <div class="product-card-content">
-                            <div class="text">
-                                <h2>Josera Sensi Adult</h2>
-                                <div class="mini-desc">Նախատեսված է միջին և մեծ ցեղատեսակի հասուն շների համար</div>
-                            </div>
-                            <img src="pictures/dog/dog-josera_sensi_adult.webp" alt="Josera Sensi Adult">
-                        </div>
-                    </a>
-                    <a class="product-card" href="product-detail.html?id=josera_lamb_rice">
-                        <div class="product-card-content">
-                            <div class="text">
-                                <h2>Josera Lamb & Rice</h2>
-                                <div class="mini-desc">Նախատեսված է բոլոր ցեղատեսակի հասուն շների համար</div>
-                            </div>
-                            <img src="pictures/dog/dog-josera_lamb_rice.webp" alt="Josera Lamb & Rice">
-                        </div>
-                    </a>
-                    <a class="product-card" href="product-detail.html?id=josera_festival">
-                        <div class="product-card-content">
-                            <div class="text">
-                                <h2>Josera Festival</h2>
-                                <div class="mini-desc">Նախատեսված է միջին և մեծ ցեղատեսակի հասուն շների համար</div>
-                            </div>
-                            <img src="pictures/dog/dog-josera_festival.webp" alt="Josera Festival">
-                        </div>
-                    </a>
-                    <a class="product-card" href="product-detail.html?id=josera_large_breed">
-                        <div class="product-card-content">
-                            <div class="text">
-                                <h2>Josera Large Breed</h2>
-                                <div class="mini-desc">Նախատեսված է մեծ ցեղատեսակի հասուն շների համար</div>
-                            </div>
-                            <img src="pictures/dog/dog-josera_large_breed.webp" alt="Josera Large Breed">
-                        </div>
-                    </a>
-                    <a class="product-card" href="product-detail.html?id=josera_mini_lamb">
-                        <div class="product-card-content">
-                            <div class="text">
-                                <h2>Josera Mini Lamb</h2>
-                                <div class="mini-desc">Նախատեսված է փոքր ցեղատեսակի հասուն շների համար</div>
-                            </div>
-                            <img src="pictures/dog/dog-josera_mini_lamb.webp" alt="Josera Mini Lamb">
-                        </div>
-                    </a>
-                    <a class="product-card" href="product-detail.html?id=josera_mini_duck_potato">
-                        <div class="product-card-content">
-                            <div class="text">
-                                <h2>Josera Mini Duck & Potato</h2>
-                                <div class="mini-desc">Նախատեսված է փոքր ցեղատեսակի հասուն շների համար</div>
-                            </div>
-                            <img src="pictures/dog/dog-josera_mini_duck_potato.webp" alt="Josera Mini Duck & Potato">
-                        </div>
-                    </a>
-                    <a class="product-card" href="product-detail.html?id=josera_mini_salmon_chicken">
-                        <div class="product-card-content">
-                            <div class="text">
-                                <h2>Josera Mini Salmon & Chicken</h2>
-                                <div class="mini-desc">Նախատեսված է փոքր ցեղատեսակի հասուն շների համար</div>
-                            </div>
-                            <img src="pictures/dog/dog-josera_mini_salmon_chicken.webp" alt="Josera Mini Salmon & Chicken">
-                        </div>
-                    </a>
-            </div>
+            <h1 class="visually-hidden">Շների կեր</h1>
+            <!-- Cards are generated by js/catalog.js from js/data.js (category: 'dog') -->
+            <div class="product-cards-grid" data-category="dog"></div>
+            <noscript><p class="noscript-msg">Ապրանքները տեսնելու համար միացրեք JavaScript-ը։</p></noscript>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-logo">José<span>ra</span></div>
-            <nav class="footer-nav">
+            <nav class="footer-nav" aria-label="Ստորին նավարկություն">
                 <ul id="navMenu">
                     <li><a href="shun.html">Շուն</a></li>
                     <li><a href="katu.html">Կատու</a></li>
                     <li><a href="josi.html">Ջոսի</a></li>
-                    <li><a href="bjshkakan.html">Օգնություն</a></li>
+                    <li><a href="bjshkakan.html">Բժշկական</a></li>
                 </ul>
             </nav>
             <div class="footer-contact">
-                <p>&copy; 2026 Josera - բոլոր իրավունքները պաշտպանված են:</p>
-                <p>Կապ մեզ հետ: <a href="mailto:info@Josera.am" class="footer-email">info@Josera.am</a></p>
+                <p>&copy; 2026 Josera կերերի խանութ։ Բոլոր իրավունքները պաշտպանված են։</p>
+                <p>Կապ մեզ հետ՝ <a href="mailto:info@Josera.am" class="footer-email">info@Josera.am</a></p>
             </div>
         </div>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/catalog.js"></script>
 </body>
 </html>

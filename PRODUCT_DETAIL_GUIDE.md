@@ -1,179 +1,72 @@
-# JOSERA PRODUCT DETAIL PAGE - IMPLEMENTATION GUIDE
+# Product Detail System — Developer Note
 
-## Overview
-This guide shows how to link product cards from any category page (shun.html, katu.html, josi.html, bjshkakan.html) to the unified product detail page.
+> Full project documentation is in [README.md](README.md). This note only covers how product pages work.
 
----
+## How it works
 
-## Files Created/Updated
+1. Category pages (`shun.html`, `katu.html`, `josi.html`, `bjshkakan.html`) contain hand-written product cards.
+2. Each card links to the shared template: `product-detail.html?id=<product_id>`.
+3. `product-detail.html` loads, in order: `js/script.js`, `js/data.js`, `js/product-detail.js`.
+4. `js/product-detail.js` reads `id` from the URL, looks it up in the global `productsData` object (`js/data.js`) and fills:
 
-### 1. **product-detail.html** (New)
-- Single template for all product details
-- Displays product info based on URL parameter: `?id=product_slug`
-- Example: `product-detail.html?id=josera_kitten_grainfree`
+   | Element id | Field |
+   |---|---|
+   | `#productName` | `name` |
+   | `#productType` | `type` |
+   | `#productMini` | `mini` |
+   | `#productDesc` | `description` |
+   | `#productPackaging` | `packaging` (shown as a badge) |
+   | `#productImage` | `image` (+ `alt` = `name`) |
 
-### 2. **js/data.js** (New)
-- Contains `productsData` object with all products
-- Each product has: name, type, mini description, full description, packaging, image path
-- Organized by category (dog, cat, josi, help products)
+   Values are inserted with `textContent` (plain text only).
+5. Missing or unknown `id` → the content area shows "Ապրանքը չի գտնվել։" (product not found).
+6. "← Վերադառնալ" button → `history.back()`, or `index.html` when there is no history (e.g. opened from a QR code).
 
-### 3. **js/product-detail.js** (New)
-- Handles URL parameter extraction
-- Populates DOM with product data from `productsData`
-- Manages back button navigation
+No backend is involved; everything runs in the browser and works on GitHub Pages and from `file://`.
 
-### 4. **katu.html** (Updated)
-- Product card links updated to: `product-detail.html?id=josera_kitten_grainfree`
-- All 5 cat products now link correctly
+## Product record
 
-### 5. **css/styles.css** (Updated)
-- Added `.product-detail-*` classes for layout
-- Professional responsive design for product detail page
-- Sticky sidebar image on desktop, full-width on mobile
+```js
+'josera_kids': {
+  name: 'Josera Kids',
+  type: 'Գերմանական սուպեր պրեմիում դասի կեր',
+  mini: 'Նախատեսված է միջին և մեծ ցեղատեսակի ձագուկների համար (2–15 ամսական)։',
+  description: 'Պարունակում է թռչնամիս։ ...',
+  packaging: '12.5 kg',
+  image: 'pictures/dog/dog-josera_kids.webp'
+},
+```
 
----
-
-## How to Link Products on Other Pages
-
-### Template for Product Card Link
+## Card template (category pages)
 
 ```html
-<a class="product-card" href="product-detail.html?id=PRODUCT_ID_HERE">
+<a class="product-card" href="product-detail.html?id=PRODUCT_ID">
     <div class="product-card-content">
         <div class="text">
             <h2>Product Name</h2>
-            <div class="product-type">Product Type</div>
-            <div class="mini-desc">Mini description text</div>
+            <div class="mini-desc">Short text</div>
         </div>
-        <img src="pictures/category/image.webp" alt="Product Name">
+        <img src="pictures/<folder>/<file>.webp" alt="Product Name">
     </div>
 </a>
 ```
 
-### Product ID Mapping Reference
+Image folders and naming (case-sensitive on GitHub Pages):
 
-**DOG PRODUCTS:**
-- `josera_family_plus_mother_puppy`
-- `josera_surf_turf_junior`
-- `josera_kids`
-- `josera_sensi_junior`
-- `josera_mini_junior`
-- `josera_lamb_sweet_potato`
-- `josera_duck_sweet_potato`
-- `josera_poultry_trout`
-- `josera_sensi_adult`
-- `josera_lamb_rice`
-- `josera_festival`
-- `josera_large_breed`
-- `josera_mini_lamb`
-- `josera_mini_duck_potato`
-- `josera_mini_salmon_chicken`
+| Folder | Pattern |
+|---|---|
+| `pictures/dog/` | `dog-josera_<name>.webp` |
+| `pictures/cat/` | `cat-josera_<name>.webp` |
+| `pictures/josi/` | `josi&cat_<name>.webp` / `josi&dog_<name>.webp` |
+| `pictures/help/` | `help&josera_<name>.webp` |
 
-**CAT PRODUCTS:**
-- `josera_kitten_grainfree`
-- `josera_naturecat`
-- `josera_catelux`
-- `josera_dailycat`
-- `josera_leger`
+## Checklist when adding/changing a product
 
-**JOSI DOG PRODUCTS:**
-- `josi_dog_family`
-- `josi_dog_junior`
-- `josi_dog_mini`
-- `josi_dog_active`
-- `josi_dog_regular`
+- [ ] Record added/updated in `js/data.js` (unique lowercase ID, comma between records)
+- [ ] Card added/updated on the category page with the same ID
+- [ ] Image exists at exactly the path used in both places (same letter case)
+- [ ] Card text and `mini` in `data.js` say the same thing
+- [ ] `product-detail.html?id=<id>` opens correctly on desktop and phone
+- [ ] No existing ID was renamed (printed QR codes may use it)
 
-**JOSI CAT PRODUCTS:**
-- `josi_cat_kitten`
-- `josi_cat_sterilised_classic`
-- `josi_cat_crispy_duck`
-- `josi_cat_tasty_beef`
-
-**HELP/MEDICAL PRODUCTS:**
-- `josera_help_urinary_cat`
-- `josera_help_renal_cat`
-- `josera_help_gastrointestinal_cat`
-- `josera_help_hypoallergenic_cat`
-- `josera_help_gastrointestinal_dog`
-- `josera_help_hypoallergenic_dog`
-- `josera_help_renal_dog`
-- `josera_help_weight_diabetic_dog`
-- `josera_help_liver_dog`
-
----
-
-## Example: Updating shun.html (Dog Products)
-
-Open **shun.html** and replace product card `href="#"` with proper links:
-
-```html
-<!-- BEFORE -->
-<a class="product-card" href="#">
-    <div class="product-card-content">
-        <div class="text">
-            <h2>Family Plus Mother & Puppy</h2>
-            <div class="product-type">Գերմանական սուպեր պրեմիում դասի կեր</div>
-            <div class="mini-desc">Նախատեսված է նորածին ձագերի (1–2 ամսական) համար։</div>
-        </div>
-        <img src="pictures/Dog/Dog&josera_family_plus_mother_puppy_salmon_rice.webp" alt="Product">
-    </div>
-</a>
-
-<!-- AFTER -->
-<a class="product-card" href="product-detail.html?id=josera_family_plus_mother_puppy">
-    <div class="product-card-content">
-        <div class="text">
-            <h2>Family Plus Mother & Puppy</h2>
-            <div class="product-type">Գերմանական սուպեր պրեմիում դասի կեր</div>
-            <div class="mini-desc">Նախատեսված է նորածին ձագերի (1–2 ամսական) համար։</div>
-        </div>
-        <img src="pictures/Dog/Dog&josera_family_plus_mother_puppy_salmon_rice.webp" alt="Product">
-    </div>
-</a>
-```
-
----
-
-## How It Works
-
-1. **User clicks a product card** → Browser navigates to:
-   ```
-   product-detail.html?id=josera_kitten_grainfree
-   ```
-
-2. **product-detail.js runs** and:
-   - Extracts `id` parameter from URL
-   - Finds product in `productsData` object
-   - Populates all DOM elements with product info
-
-3. **Page displays**:
-   - Large product image on the right
-   - Name, type, and full description on the left
-   - Packaging size in a badge
-   - Back button to return to previous page
-
-4. **Back button**:
-   - Uses `window.history.back()` if available
-   - Falls back to `index.html` if no history
-
----
-
-## Verification Checklist
-
-✅ All product card links point to: `product-detail.html?id=PRODUCT_ID`
-✅ Product IDs match keys in `js/data.js` productsData object
-✅ Images exist at paths specified in data.js
-✅ Product-detail.html, js/data.js, and js/product-detail.js are all present
-✅ CSS includes product-detail styles
-✅ Tested at least one product link
-
----
-
-## Notes
-
-- **No backend required**: All data is in `js/data.js`
-- **Fully responsive**: Works on desktop, tablet, and mobile
-- **SEO friendly**: Each product has unique URL parameter
-- **Accessible**: Proper semantic HTML and navigation
-- **Easy to maintain**: Add/edit products by updating `js/data.js`
-
+The complete list of product IDs per category is in README.md, section 7.

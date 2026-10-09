@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Բժշկական - Ապրանքներ</title>
+    <meta name="description" content="Josera Help բժշկական (դիետիկ) կերեր կատուների և շների համար՝ երիկամների, միզուղիների, մարսողության, ալերգիայի և այլ խնդիրների դեպքում։">
+    <meta name="theme-color" content="#FFD700">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Josera">
+    <meta property="og:locale" content="hy_AM">
+    <meta property="og:title" content="Բժշկական - Ապրանքներ">
+    <meta property="og:description" content="Josera Help բժշկական (դիետիկ) կերեր կատուների և շների համար՝ երիկամների, միզուղիների, մարսողության, ալերգիայի և այլ խնդիրների դեպքում։">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <div class="header-top">
-            <a href="index.html" class="logo">José<span>ra</span></a>
+            <a href="index.html" class="logo" aria-label="Josera — գլխավոր էջ">José<span>ra</span></a>
             <div class="mini-desc">Բժշկական Josera ապրանքների ցանկ</div>
             <div class="header-actions">
-                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
-                <nav class="header-nav" aria-label="Header navigation">
-                    <ul class="header-buttons">
+                <button class="menu-toggle" type="button" onclick="toggleMenu()" aria-label="Մենյու" aria-expanded="false" aria-controls="headerMenu">☰</button>
+                <nav class="header-nav" aria-label="Գլխավոր նավարկություն">
+                    <ul class="header-buttons" id="headerMenu">
                         <li><a href="shun.html">Շուն</a></li>
                         <li><a href="katu.html">Կատու</a></li>
                         <li><a href="josi.html">Ջոսի</a></li>
-                        <li><a href="bjshkakan.html">Օգնություն</a></li>
+                        <li><a href="bjshkakan.html">Բժշկական</a></li>
                     </ul>
                 </nav>
             </div>
@@ -26,91 +34,33 @@
     </header>
     <main>
         <section class="product-cards-section">
-            <div class="product-cards-grid">
-                <a class="product-card" href="product-detail.html?id=josera_help_urinary_cat">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Help Urinary Cat</h2>
-                            <div class="mini-desc">Նախատեսված է 1 տարեկանից բարձր հասուն կատուների համար</div>
-                        </div>
-                        <img src="pictures/help/help&josera_urinary_cat.webp" alt="Josera Help Urinary Cat">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_help_renal_cat">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Help Renal Cat</h2>
-                            <div class="mini-desc">Նախատեսված է 1 տարեկանից բարձր հասուն կատուների համար</div>
-                        </div>
-                        <img src="pictures/help/help&josera_renal_cat.webp" alt="Josera Help Renal Cat">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_help_gastrointestinal_cat">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Help Gastrointestinal Cat</h2>
-                            <div class="mini-desc">Նախատեսված է աղեստամոքսային խնդիրների համար</div>
-                        </div>
-                        <img src="pictures/help/help&josera_gastrointestinal_cat.webp" alt="Josera Help Gastrointestinal Cat">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_help_hypoallergenic_cat">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Help Hypoallergenic Cat</h2>
-                            <div class="mini-desc">նախատեսված ալերգիկ և զգայուն կատուների համար</div>
-                        </div>
-                        <img src="pictures/help/help&josera_hypoallergenic_cat.webp" alt="Josera Help Hypoallergenic Cat">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_help_gastrointestinal_dog">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Help Gastrointestinal Dog</h2>
-                            <div class="mini-desc">Օգտագործվում է մարսողական խնդիրների դեպքում</div>
-                        </div>
-                        <img src="pictures/help/help&josera_gastrointestinal_dog.webp" alt="Josera Help Gastrointestinal Dog">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_help_hypoallergenic_dog">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Help Hypoallergenic Dog</h2>
-                            <div class="mini-desc">Հիպոալերգիկ պարբերական ծրագիր՝ նախատեսված շների համար</div>
-                        </div>
-                        <img src="pictures/help/help&josera_hypoallergenic_dog.webp" alt="Josera Help Hypoallergenic Dog">
-                    </div>
-                </a>
-                <a class="product-card" href="product-detail.html?id=josera_help_renal_dog">
-                    <div class="product-card-content">
-                        <div class="text">
-                            <h2>Josera Help Renal Dog</h2>
-                            <div class="mini-desc">Օգտագործվում է երիկամային անբավարարության դեպքում։</div>
-                        </div>
-                        <img src="pictures/help/help&josera_renal_dog.webp" alt="Josera Help Renal Dog">
-                    </div>
-                </a>
-            </div>
+            <h1 class="visually-hidden">Josera Help բժշկական կեր</h1>
+            <!-- Cards are generated by js/catalog.js from js/data.js (category: 'help') -->
+            <p class="vet-note vet-note-page">Բժշկական (դիետիկ) կերերը օգտագործեք անասնաբույժի խորհրդով։</p>
+            <div class="product-cards-grid" data-category="help"></div>
+            <noscript><p class="noscript-msg">Ապրանքները տեսնելու համար միացրեք JavaScript-ը։</p></noscript>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-logo">José<span>ra</span></div>
-            <nav class="footer-nav">
+            <nav class="footer-nav" aria-label="Ստորին նավարկություն">
                 <ul id="navMenu">
                     <li><a href="shun.html">Շուն</a></li>
                     <li><a href="katu.html">Կատու</a></li>
                     <li><a href="josi.html">Ջոսի</a></li>
-                    <li><a href="bjshkakan.html">Օգնություն</a></li>
+                    <li><a href="bjshkakan.html">Բժշկական</a></li>
                 </ul>
             </nav>
             <div class="footer-contact">
-                <p>&copy; 2026 Josera - բոլոր իրավունքները պաշտպանված են:</p>
-                <p>Կապ մեզ հետ: <a href="mailto:info@Josera.am" class="footer-email">info@Josera.am</a></p>
+                <p>&copy; 2026 Josera կերերի խանութ։ Բոլոր իրավունքները պաշտպանված են։</p>
+                <p>Կապ մեզ հետ՝ <a href="mailto:info@Josera.am" class="footer-email">info@Josera.am</a></p>
             </div>
         </div>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/catalog.js"></script>
 </body>
 </html>

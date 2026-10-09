@@ -1,31 +1,48 @@
+// ============================================
+// SHARED UI BEHAVIOUR (loaded on every page)
+// - Mobile menu (☰) open/close
+// - Highlight of the current page in the header menu
+// - Small animations (feature cards, hero button ripple, page fade-in)
+// ============================================
+
+var prefersReducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ===== MOBILE MENU TOGGLE =====
+// Called from onclick="toggleMenu()" on the ☰ button in every page header.
 function toggleMenu() {
-    const headerUl = document.querySelector('header .header-nav ul.header-buttons');
-    const header = document.querySelector('header');
-    const toggleBtn = document.querySelector('.menu-toggle');
-    if (headerUl) {
-        headerUl.classList.toggle('active');
+    var header = document.querySelector('header');
+    var headerUl = document.querySelector('header .header-nav ul.header-buttons');
+    var toggleBtn = document.querySelector('.menu-toggle');
+    var isOpen = header && header.classList.contains('nav-open');
+    setMenuOpen(!isOpen);
+    if (headerUl) requestAnimationFrame(positionNavToToggle);
+}
+
+function setMenuOpen(open) {
+    var header = document.querySelector('header');
+    var headerUl = document.querySelector('header .header-nav ul.header-buttons');
+    var headerNav = document.querySelector('header .header-nav');
+    var toggleBtn = document.querySelector('.menu-toggle');
+    if (headerUl) headerUl.classList.toggle('active', open);
+    if (header) header.classList.toggle('nav-open', open);
+    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', String(open));
+    if (!open && headerNav) {
+        headerNav.style.left = '';
+        headerNav.style.top = '';
+        headerNav.style.right = '';
     }
-    if (header) {
-        header.classList.toggle('nav-open');
-    }
-    if (toggleBtn) {
-        const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-        toggleBtn.setAttribute('aria-expanded', (!expanded).toString());
-    }
-    // After opening/closing, position the nav to the toggle (if open)
-    requestAnimationFrame(() => positionNavToToggle());
 }
 
 // Position the header nav so it appears anchored to the menu toggle button
+// (only on wider screens; on phones CSS shows it as a full-width panel).
 function positionNavToToggle() {
-    const header = document.querySelector('header');
-    const headerNav = document.querySelector('header .header-nav');
-    const headerUl = document.querySelector('header .header-nav ul.header-buttons');
-    const toggleBtn = document.querySelector('.menu-toggle');
+    var header = document.querySelector('header');
+    var headerNav = document.querySelector('header .header-nav');
+    var headerUl = document.querySelector('header .header-nav ul.header-buttons');
+    var toggleBtn = document.querySelector('.menu-toggle');
     if (!header || !headerNav || !headerUl || !toggleBtn) return;
 
-    // On small screens use the full-width CSS behavior (do not reposition)
     if (window.matchMedia('(max-width: 768px)').matches) {
         headerNav.style.left = '';
         headerNav.style.right = '';
@@ -33,210 +50,103 @@ function positionNavToToggle() {
         return;
     }
 
-    // Only position when menu is open
-    const isOpen = headerUl.classList.contains('active') || header.classList.contains('nav-open');
-    if (!isOpen) return;
+    if (!header.classList.contains('nav-open')) return;
 
-    // Wait a frame so styles are applied and sizes are measurable
-    requestAnimationFrame(() => {
-        const headerRect = header.getBoundingClientRect();
-        const toggleRect = toggleBtn.getBoundingClientRect();
-        const navRect = headerNav.getBoundingClientRect();
-
-        // Center the nav under the toggle button (clamped inside header)
-        const toggleCenter = (toggleRect.left - headerRect.left) + (toggleRect.width / 2);
-        let left = Math.round(toggleCenter - navRect.width / 2);
-        const margin = 8; // minimal margin from header edges
-        const maxLeft = header.clientWidth - navRect.width - margin;
-        let clampedLeft = Math.max(margin, Math.min(left, maxLeft));
-
-        headerNav.style.left = clampedLeft + 'px';
+    requestAnimationFrame(function () {
+        var headerRect = header.getBoundingClientRect();
+        var toggleRect = toggleBtn.getBoundingClientRect();
+        var navRect = headerNav.getBoundingClientRect();
+        var toggleCenter = (toggleRect.left - headerRect.left) + (toggleRect.width / 2);
+        var left = Math.round(toggleCenter - navRect.width / 2);
+        var margin = 8;
+        var maxLeft = header.clientWidth - navRect.width - margin;
+        headerNav.style.left = Math.max(margin, Math.min(left, maxLeft)) + 'px';
         headerNav.style.top = (toggleRect.bottom - headerRect.top + 6) + 'px';
         headerNav.style.right = 'auto';
     });
 }
 
-// Close menu when clicking outside
-document.addEventListener('click', function(event) {
-    const toggle = document.querySelector('.menu-toggle');
-    const headerUl = document.querySelector('header .header-nav ul.header-buttons');
-    const header = document.querySelector('header');
+// Close menu when clicking outside it
+document.addEventListener('click', function (event) {
+    var toggle = document.querySelector('.menu-toggle');
+    var headerUl = document.querySelector('header .header-nav ul.header-buttons');
     if (toggle && headerUl && !toggle.contains(event.target) && !headerUl.contains(event.target)) {
-        headerUl.classList.remove('active');
-        if (header) header.classList.remove('nav-open');
-        if (toggle) toggle.setAttribute('aria-expanded', 'false');
-        const headerNav = document.querySelector('header .header-nav');
-        if (headerNav) {
-            headerNav.style.left = '';
-            headerNav.style.top = '';
-            headerNav.style.right = '';
-        }
+        setMenuOpen(false);
     }
 });
 
-// Close menu when clicking on a link
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function() {
-        const headerUl = document.querySelector('header .header-nav ul.header-buttons');
-        const header = document.querySelector('header');
-        const toggle = document.querySelector('.menu-toggle');
-        if (headerUl) headerUl.classList.remove('active');
-        if (header) header.classList.remove('nav-open');
-        if (toggle) toggle.setAttribute('aria-expanded', 'false');
-        const headerNav = document.querySelector('header .header-nav');
-        if (headerNav) {
-            headerNav.style.left = '';
-            headerNav.style.top = '';
-            headerNav.style.right = '';
-        }
-    });
+// Close menu with the Escape key
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') setMenuOpen(false);
 });
 
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href !== '#') {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    });
+// Close menu when a menu link is clicked
+document.querySelectorAll('nav a').forEach(function (link) {
+    link.addEventListener('click', function () { setMenuOpen(false); });
 });
 
-// ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Keep the dropdown anchored to the toggle when the window is resized
+window.addEventListener('resize', positionNavToToggle);
 
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe feature cards for animation
-document.querySelectorAll('.feature-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
-
-// ===== ACTIVE NAV HIGHLIGHT =====
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('section[id]');
-    let current = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    document.querySelectorAll('nav a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
+// ===== CURRENT PAGE HIGHLIGHT =====
+(function () {
+    var current = window.location.pathname.split('/').pop() || 'index.html';
+    if (current === 'product-detail.html') return;
+    document.querySelectorAll('.header-nav a, .footer-nav a').forEach(function (link) {
+        if (link.getAttribute('href') === current) {
             link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
         }
     });
-});
+})();
 
-// Reposition dropdown on resize so it stays anchored to the toggle
-window.addEventListener('resize', function() {
-    positionNavToToggle();
-});
-
-// ===== ADD ACTIVE CLASS STYLING =====
-const style = document.createElement('style');
-style.innerHTML = `
-    nav a.active {
-        color: var(--primary-yellow);
-    }
-    
-    nav a.active::after {
-        width: 100%;
-    }
-`;
-document.head.appendChild(style);
-
-// ===== LAZY LOAD IMAGES =====
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+// ===== FEATURE CARDS FADE-IN (home page) =====
+if ('IntersectionObserver' in window && !prefersReducedMotion) {
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                imageObserver.unobserve(img);
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
             }
         });
-    });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
+    document.querySelectorAll('.feature-card').forEach(function (card) {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
     });
 }
 
-// ===== BUTTON RIPPLE EFFECT =====
-document.querySelectorAll('.cta-button').forEach(button => {
-    button.addEventListener('click', function(e) {
-        const ripple = document.createElement('span');
-        const rect = this.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top - size / 2;
-
+// ===== BUTTON RIPPLE EFFECT (styles in css/styles.css) =====
+document.querySelectorAll('.cta-button').forEach(function (button) {
+    button.addEventListener('click', function (e) {
+        if (prefersReducedMotion) return;
+        var ripple = document.createElement('span');
+        var rect = this.getBoundingClientRect();
+        var size = Math.max(rect.width, rect.height);
         ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.classList.add('ripple');
-
+        ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+        ripple.className = 'ripple';
         this.appendChild(ripple);
-
-        setTimeout(() => ripple.remove(), 600);
+        setTimeout(function () { ripple.remove(); }, 600);
     });
 });
 
-// Add ripple effect styles
-const rippleStyle = document.createElement('style');
-rippleStyle.innerHTML = `
-    .cta-button {
-        position: relative;
-        overflow: hidden;
+// ===== PAGE FADE-IN =====
+// Shows the page as soon as the HTML is ready (does NOT wait for images).
+if (!prefersReducedMotion) {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.3s ease';
+    var showPage = function () {
+        requestAnimationFrame(function () { document.body.style.opacity = '1'; });
+    };
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', showPage);
+    } else {
+        showPage();
     }
-
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
-        transform: scale(0);
-        animation: rippleAnimation 0.6s ease-out;
-        pointer-events: none;
-    }
-
-    @keyframes rippleAnimation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(rippleStyle);
-
-// ===== PAGE LOAD ANIMATION =====
-window.addEventListener('load', function() {
-    document.body.style.opacity = '1';
-});
-
-// Set initial body opacity
-document.body.style.opacity = '0';
-document.body.style.transition = 'opacity 0.5s ease';
+}
